@@ -57,7 +57,29 @@ def add_d_leaves(t, v):
         10
     """
     "*** YOUR CODE HERE ***"
+    def helper(tree, value, depth=0):
+        """Helper function
 
+        Tracing depth at each level.
+
+        Args:
+            tree: tree to add leaves
+            value: label of tree to be added.
+            depth: current depth of the tree and how many leaves to add.
+
+        Return:
+            None
+        """
+        nodes = [Tree(value)] * depth
+        if tree.is_leaf():
+            tree.branches = nodes
+            return
+
+        for b in tree.branches:
+            helper(b, value, depth + 1)
+        tree.branches += nodes
+
+    helper(t, v)
 
 def has_path(t, target):
     """Return whether there is a path in a Tree where the entries along the path
@@ -91,6 +113,39 @@ def has_path(t, target):
     """
     assert len(target) > 0, 'no path for empty target.'
     "*** YOUR CODE HERE ***"
+    # ===== Tedious Version =====
+    # This version deals with empty target.
+    # ===========================
+    # def path(t, target):
+    #     """Helper Function.
+    #     """
+    #     print('DEBUG:', target)
+    #     if len(target) == 0:
+    #         return True
+    #     elif len(target) == 1:
+    #         return True if t.label == target else False
+    #     elif t.is_leaf():
+    #         return False
+
+    #     if t.label == target[0]:
+    #         for b in t.branches:
+    #             if b.label == target[1]:
+    #                 return path(b, target[1:])
+    #     else:
+    #         return False
+
+    # return path(t, target)
+    if len(target) == 1:
+        return True if t.label == target else False
+    elif t.is_leaf():
+        return False
+
+    if t.label == target[0]:
+        for b in t.branches:
+            if b.label == target[1]:
+                return has_path(b, target[1:])
+    else:
+        return False
 
 
 def duplicate_link(lnk, val):
@@ -113,6 +168,23 @@ def duplicate_link(lnk, val):
     Link(1, Link(2, Link(2, Link(2, Link(2, Link(3))))))
     """
     "*** YOUR CODE HERE ***"
+    def helper(lnk, val):
+        if lnk is Link.empty:
+            return
+        elif lnk.rest is Link.empty:
+            if lnk.first == val:
+                lnk.rest = Link(val)
+            return
+
+        if lnk.first == val:
+            node = Link(val, lnk.rest)
+            lnk.rest = node
+            helper(lnk.rest.rest, val)
+        else:
+            helper(lnk.rest, val)
+
+    ptr = lnk
+    helper(ptr, val)
 
 
 def deep_map(f, link):
@@ -129,6 +201,16 @@ def deep_map(f, link):
     <<2 <4 6> 8> <<10>>>
     """
     "*** YOUR CODE HERE ***"
+    if link is Link.empty:
+        return link
+    elif link.rest is Link.empty:
+        return Link(deep_map(f, link.first)) if isinstance(link.first, Link) \
+            else Link(f(link.first))
+
+    if isinstance(link.first, Link):
+        return Link(deep_map(f, link.first), rest=deep_map(f, link.rest))
+    else:
+        return Link(f(link.first), rest=deep_map(f, link.rest))
 
 
 class Tree:
