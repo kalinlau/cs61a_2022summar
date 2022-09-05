@@ -5,7 +5,7 @@
 Projects, Labs, HWs, Discs and Notes about CS61A.
 This is an awesome class that everyone should take.
 
-Topics that refreshes myself are:
+Topics that refreshes me are:
 
 - Environment Diagram and PythonTutor: that's how you should think of programming
 - Recursive: This time not Fibbnacci sequence, quite boring. Understanding of Recursion can be 3 level:
