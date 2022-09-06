@@ -35,6 +35,9 @@ def scheme_eval(expr, env, _=None):  # Optional third argument is ignored
     else:
         # BEGIN PROBLEM 3
         "*** YOUR CODE HERE ***"
+        procedure = scheme_eval(first, env)
+        argpairs = rest.map(lambda expr: scheme_eval(expr, env))
+        return scheme_apply(procedure, argpairs, env)
         # END PROBLEM 3
 
 
@@ -43,7 +46,7 @@ def scheme_apply(procedure, args, env):
     Frame ENV, the current environment."""
     validate_procedure(procedure)
     if not isinstance(env, Frame):
-       assert False, "Not a Frame: {}".format(env)
+        assert False, "Not a Frame: {}".format(env)
     if isinstance(procedure, BuiltinProcedure):
         # BEGIN PROBLEM 2
         "*** YOUR CODE HERE ***"
