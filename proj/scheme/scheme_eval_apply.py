@@ -74,6 +74,13 @@ def scheme_apply(procedure, args, env):
     elif isinstance(procedure, MuProcedure):
         # BEGIN PROBLEM 11
         "*** YOUR CODE HERE ***"
+        ptf = procedure.formals
+        pta = args
+        while ptf is not nil:
+            env.define(ptf.first, pta.first)
+            ptf = ptf.rest
+            pta = pta.rest
+        return eval_all(procedure.body, env)
         # END PROBLEM 11
     else:
         assert False, "Unexpected procedure: {}".format(procedure)
@@ -96,7 +103,6 @@ def eval_all(expressions, env):
     """
     # BEGIN PROBLEM 6
     # return scheme_eval(expressions.first, env)  # replace this with lines of your own code
-    print('DEBUG:', expressions)
     if scheme_nullp(expressions):
         return
     elif scheme_nullp(expressions.rest):

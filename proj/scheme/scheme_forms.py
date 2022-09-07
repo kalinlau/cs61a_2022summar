@@ -39,10 +39,7 @@ def do_define_form(expressions, env):
         validate_form(expressions, 2, 2)  # Checks that expressions is a list of length exactly 2
         # BEGIN PROBLEM 4
         "*** YOUR CODE HERE ***"
-        print('DEBUG:', expressions)
-        print('DEBUG:', signature)
         expr = expressions.rest
-        print('DEBUG:', expr.first)
         if scheme_atomp(expr.first):
             env.define(signature, expr.first)
         else:
@@ -261,6 +258,7 @@ def do_mu_form(expressions, env):
     validate_formals(formals)
     # BEGIN PROBLEM 11
     "*** YOUR CODE HERE ***"
+    return MuProcedure(formals, expressions.rest)
     # END PROBLEM 11
 
 
