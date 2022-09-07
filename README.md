@@ -14,3 +14,8 @@ Topics that refreshes me are:
     3. Frame (or stack in OS) is the deepest reason, and that's why `Tail Calls` are important in `Scheme`
 - Higher Order Functions: abstraction of procedure.
 - Declarative Programming: if you have ever use Google's `Jax` instead of `Tensorflow` or `Pytorch` to train neural network, then you know why declarative programming is important.
+
+## TODO
+
+- Project 4: Extra Credit
+- All optional Problems in Disc, HWs, Labs, Projs: I'm lazy~
