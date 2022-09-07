@@ -34,8 +34,22 @@
 ;; Merge two lists LIST1 and LIST2 according to ORDERED? and return
 ;; the merged lists.
 (define (merge ordered? list1 list2)
-  ; BEGIN PROBLEM 16
-  'replace-this-line
-  )
-  ; END PROBLEM 16
+; BEGIN PROBLEM 16
+    ; ============= Version 1: Non-Tail Recursion =============
+    ; (if (null? list1) list2
+    ;     (if (null? list2) list1
+    ;         (if (ordered? (car list1) (car list2))
+    ;             (cons (car list1) (merge ordered? (cdr list1) list2))
+    ;             (cons (car list2) (merge ordered? list1 (cdr list2)))))))
+
+    ; =============== Version 2: Tail Recursion ===============
+    ; Trade time complexity with space complexity
+    (define (merge-mem ordered? l1 l2 mem)
+        (if (null? l1) (append mem l2)
+            (if (null? l2) (append mem l1)
+                (if (ordered? (car l1) (car l2))
+                    (merge-mem ordered? (cdr l1) l2 (append mem (cons (car l1) nil)))
+                    (merge-mem ordered? l1 (cdr l2) (append mem (cons (car l2) nil)))))))
+    (merge-mem ordered? list1 list2 nil))
+; END PROBLEM 16
 
