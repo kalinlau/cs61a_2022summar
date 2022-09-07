@@ -6,25 +6,27 @@
   (cons name (cons class students)))
 
 (define (student-get-name student)
-  'YOUR-CODE-HERE)
+    (car student))
 
 (define (student-get-classes student)
-  'YOUR-CODE-HERE)
+    (cdr student))
 
 (define (teacher-get-name teacher)
-  'YOUR-CODE-HERE)
+    (car teacher))
 
 (define (teacher-get-class teacher)
-  'YOUR-CODE-HERE)
+    (car (cdr teacher)))
 
 (define (teacher-get-students teacher)
-  'YOUR-CODE-HERE)
+    (cdr (cdr teacher)))
 
 (define (student-attend-class student class)
-  'YOUR-CODE-HERE)
+    (student-create (student-get-name student)
+        (cons class (student-get-classes student))))
 
 (define (teacher-hold-class teacher)
-  'YOUR-CODE-HERE)
+    (teacher-create (teacher-get-name teacher) (teacher-get-class teacher)
+        (map (lambda (x) (student-attend-class x (teacher-get-class teacher))) (teacher-get-students teacher))))
 
 ; Rational Abstraction
 ; Helpers
