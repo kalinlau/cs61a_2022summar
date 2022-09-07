@@ -1,3 +1,4 @@
+from ast import Lambda
 from scheme_eval_apply import *
 from scheme_utils import *
 from scheme_classes import *
@@ -97,6 +98,7 @@ def do_lambda_form(expressions, env):
     validate_formals(formals)
     # BEGIN PROBLEM 7
     "*** YOUR CODE HERE ***"
+    return LambdaProcedure(formals, expressions.rest, env)
     # END PROBLEM 7
 
 
