@@ -1,4 +1,5 @@
 from ast import Lambda
+from cmath import exp
 from scheme_eval_apply import *
 from scheme_utils import *
 from scheme_classes import *
@@ -136,6 +137,15 @@ def do_and_form(expressions, env):
     """
     # BEGIN PROBLEM 12
     "*** YOUR CODE HERE ***"
+    if expressions is nil:
+        return True
+    val = scheme_eval(expressions.first, env)
+    if expressions.rest is nil:
+        return False if is_scheme_false(val) else val
+    elif is_scheme_false(val):
+        return False
+    else:
+        return do_and_form(expressions.rest, env)
     # END PROBLEM 12
 
 
@@ -155,6 +165,13 @@ def do_or_form(expressions, env):
     """
     # BEGIN PROBLEM 12
     "*** YOUR CODE HERE ***"
+    if expressions is nil:
+        return False
+    val = scheme_eval(expressions.first, env)
+    if is_scheme_true(val):
+        return val
+    else:
+        return do_or_form(expressions.rest, env)
     # END PROBLEM 12
 
 
