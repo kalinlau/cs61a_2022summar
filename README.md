@@ -17,5 +17,6 @@ Topics that refreshes me are:
 
 ## TODO
 
-- Project 4: Extra Credit
-- All optional Problems in Disc, HWs, Labs, Projs: I'm lazy~
+- SQL and RegEx stuffs: Disc 11, Lab 11, HW7
+- Final Review: Lab 12, HW8, Disc 12
+- Optional Bonus in all hws, labs, discs and projects
