@@ -1,6 +1,6 @@
 # UCB CS61A 2022 Summer: Structure && Interpretation of Computer Program
 
-> Computer Science is about '3A': Abstraction, Algorithm, Automation. \
+> Computer Science is about '3A': Abstraction, Algorithm, Automation. And here comes Abstraction. \
 > And CS61A teaches me thinking programming in computational perspective, instead of API perspective \
 > CMU CSAPP teaches me thinking programming in OS perspective
 
