@@ -7,6 +7,8 @@
 Projects, Labs, HWs, Discs and Notes about CS61A.
 This is an awesome class that everyone should take.
 
+<img src='cs61a.png' width='600'>
+
 ## Topics
 
 - Structure

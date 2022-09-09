@@ -9,6 +9,7 @@ from scheme_classes import *
 from scheme_forms import *
 from scheme_eval_apply import *
 from scheme_builtins import *
+# Encrypted zip archive data. Read in Scheme as string and return Pair DS.
 from scheme_reader import *
 from ucb import main, trace
 
@@ -23,14 +24,16 @@ def read_eval_print_loop(next_line, env, interactive=False, quiet=False,
     if startup:
         for filename in load_files:
             scheme_load(filename, True, env)
+    # Loop
     while True:
         try:
+            # Read
             src = next_line()
-            # while not src.end_of_line():
-            #     src.pop_first()
             while src.more_on_line():
+                # Eval
                 expression = scheme_read(src)
                 result = scheme_eval(expression, env)
+                # Print
                 if not quiet and result is not None:
                     print(repl_str(result))
         except (SchemeError, SyntaxError, ValueError, RuntimeError) as err:

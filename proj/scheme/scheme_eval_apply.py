@@ -30,17 +30,22 @@ def scheme_eval(expr, env, _=None):  # Optional third argument is ignored
     if not scheme_listp(expr):
         raise SchemeError('malformed list: {0}'.format(repl_str(expr)))
     first, rest = expr.first, expr.rest
+    # Special Forms Eval
     if scheme_symbolp(first) and first in scheme_forms.SPECIAL_FORMS:
         return scheme_forms.SPECIAL_FORMS[first](rest, env)
+    # Builtin Procedure or User-defined Procedure Eval
     else:
         # BEGIN PROBLEM 3
         "*** YOUR CODE HERE ***"
+        # Step 1. Evaluate operator
         procedure = scheme_eval(first, env)
+        # Step 2. Evaluate operands
         argpairs = rest.map(lambda expr: scheme_eval(expr, env))
+        # Step 3. Apply operator to operands
         return scheme_apply(procedure, argpairs, env)
         # END PROBLEM 3
 
-
+@trace
 def scheme_apply(procedure, args, env):
     """Apply Scheme PROCEDURE to argument values ARGS (a Scheme list) in
     Frame ENV, the current environment."""
